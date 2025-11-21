@@ -1,0 +1,30 @@
+{
+  "name": "webdriverio-demo",
+  "version": "1.0.0",
+  "description": "WebdriverIO demo project with improved login tests",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "wdio run wdio.conf.js",
+    "test:headed": "HEADED=true wdio run wdio.conf.js",
+    "test:headless": "wdio run wdio.conf.js",
+    "test:debug": "HEADED=true wdio run wdio.conf.js --logLevel debug",
+    "test:login": "HEADED=true wdio run wdio.conf.js --spec test/specs/login.test.js",
+    "wdio": "wdio run wdio.conf.js"
+  },
+  "keywords": [
+    "webdriverio",
+    "automation",
+    "testing"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@wdio/cli": "^9.0.7",
+    "@wdio/local-runner": "^9.0.7",
+    "@wdio/mocha-framework": "^9.0.7",
+    "@wdio/spec-reporter": "^9.0.7",
+    "@wdio/globals": "^9.0.7",
+    "chromedriver": "^120.0.0"
+  }
+}
