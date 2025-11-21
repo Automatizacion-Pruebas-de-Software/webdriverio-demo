@@ -23,17 +23,23 @@ jobs:
     - name: Install dependencies
       run: npm install
       
-    - name: Install Chrome
+    - name: Install Chrome and ChromeDriver
       run: |
         sudo apt-get update
         sudo apt-get install -y google-chrome-stable
         
-    - name: Verify Chrome installation
-      run: google-chrome-stable --version
-      
+        # Verificar versiones compatibles
+        echo "Chrome version:"
+        google-chrome-stable --version
+        
+        echo "ChromeDriver version:"
+        npx chromedriver --version
+        
     - name: Run WebdriverIO tests
       run: npm run test:ci
-      
+      env:
+        CI: true
+        
     - name: Upload test results
       uses: actions/upload-artifact@v4
       if: always()
@@ -42,4 +48,5 @@ jobs:
         path: |
           ./errorShots/
           ./logs/
+          ./*.png
         retention-days: 30

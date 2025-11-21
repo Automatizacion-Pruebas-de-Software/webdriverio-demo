@@ -14,18 +14,13 @@ export const config = {
                 const baseArgs = [
                     '--disable-gpu',
                     '--no-sandbox',
-                    '--disable-dev-shm-usage'
+                    '--disable-dev-shm-usage',
+                    '--window-size=1920,1080'
                 ];
                 
-                // Verificar si debemos ejecutar en modo headed
-                const isHeaded = process.env.HEADED === 'true' || 
-                               process.argv.includes('--headed');
-                
-                if (!isHeaded) {
+                // En CI siempre usar headless
+                if (process.env.CI || !process.env.HEADED) {
                     baseArgs.push('--headless=new');
-                    baseArgs.push('--window-size=1920,1080');
-                } else {
-                    baseArgs.push('--start-maximized');
                 }
                 
                 return baseArgs;
@@ -38,7 +33,10 @@ export const config = {
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,
-    services: [],
+    
+    // ✅ CORRECCIÓN: Agregar el servicio ChromeDriver
+    services: ['chromedriver'],
+    
     framework: 'mocha',
     reporters: ['spec'],
     mochaOpts: {
@@ -46,10 +44,8 @@ export const config = {
         timeout: 60000
     },
 
-    // Configuración específica para CI
-    hostname: 'localhost',
-    port: 4444,
-    path: '/',
+    // ✅ CORRECCIÓN: Quitar configuración manual de hostname/puerto
+    // ChromeDriver maneja esto automáticamente
     
     // Hooks
     before: async () => {

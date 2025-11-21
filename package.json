@@ -11,7 +11,7 @@
     "test:debug": "HEADED=true wdio run wdio.conf.js --logLevel debug",
     "test:login": "HEADED=true wdio run wdio.conf.js --spec test/specs/login.test.js",
     "wdio": "wdio run wdio.conf.js",
-    "test:ci": "wdio run wdio.conf.js --hostname localhost --port 4444"
+    "test:ci": "CI=true wdio run wdio.conf.js"
   },
   "keywords": [
     "webdriverio",
@@ -26,6 +26,7 @@
     "@wdio/mocha-framework": "^9.0.7",
     "@wdio/spec-reporter": "^9.0.7",
     "@wdio/globals": "^9.0.7",
+    "@wdio/chromedriver-service": "^9.0.7",
     "chromedriver": "^120.0.0"
   }
 }
