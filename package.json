@@ -10,7 +10,8 @@
     "test:headless": "wdio run wdio.conf.js",
     "test:debug": "HEADED=true wdio run wdio.conf.js --logLevel debug",
     "test:login": "HEADED=true wdio run wdio.conf.js --spec test/specs/login.test.js",
-    "wdio": "wdio run wdio.conf.js"
+    "wdio": "wdio run wdio.conf.js",
+    "test:ci": "wdio run wdio.conf.js --hostname localhost --port 4444"
   },
   "keywords": [
     "webdriverio",

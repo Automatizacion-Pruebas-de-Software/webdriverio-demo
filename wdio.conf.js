@@ -45,6 +45,11 @@ export const config = {
         ui: 'bdd',
         timeout: 60000
     },
+
+    // Configuración específica para CI
+    hostname: 'localhost',
+    port: 4444,
+    path: '/',
     
     // Hooks
     before: async () => {
